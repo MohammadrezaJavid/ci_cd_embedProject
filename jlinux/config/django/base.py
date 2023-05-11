@@ -17,6 +17,7 @@ LOCAL_APPS = [
     'jlinux.core.apps.CoreConfig',
     'jlinux.common.apps.CommonConfig',
     'jlinux.users.apps.UsersConfig',
+    'jlinux.blog.apps.BlogConfig',
     'jlinux.authentication.apps.AuthenticationConfig',
 ]
 
