@@ -16,8 +16,8 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 LOCAL_APPS = [
     'jlinux.core.apps.CoreConfig',
     'jlinux.common.apps.CommonConfig',
-    'jlinux.users.apps.UsersConfig',
     'jlinux.blog.apps.BlogConfig',
+    'jlinux.users.apps.UsersConfig',
     'jlinux.authentication.apps.AuthenticationConfig',
 ]
 
