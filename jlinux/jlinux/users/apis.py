@@ -93,4 +93,3 @@ class RegisterApi(APIView):
                     status=status.HTTP_400_BAD_REQUEST
                     )
         return Response(self.OutPutRegisterSerializer(user, context={"request":request}).data)
-
