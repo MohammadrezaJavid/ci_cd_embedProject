@@ -1,5 +1,5 @@
 FROM python:3.10.7-slim-buster
-#FROM docker.devopshobbieslearning.com/utils/python:3.10.7-slim-buster
+#FROM docker.jlinux.ir/utils/python:3.10.7-slim-buster
 ENV HOME=/app
 ENV APP_HOME=/app/backend
 # Keeps Python from generating .pyc files in the container
