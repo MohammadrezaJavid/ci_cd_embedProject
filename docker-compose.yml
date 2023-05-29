@@ -25,7 +25,9 @@ services:
       context: .
       dockerfile: docker/production.Dockerfile
     container_name: django
-    command: ./docker/web_entrypoint.sh
+    command: >
+      sh -c "chmod +x ./docker/web_entrypoint.sh &&
+             ./docker/web_entrypoint.sh"
     environment:
       - DATABASE_URL=psql://user:password@db:5432/jlinux
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
@@ -44,7 +46,9 @@ services:
       dockerfile: docker/production.Dockerfile
     # command: celery -A jlinux.tasks worker -l info --without-gossip --without-mingle --without-heartbeat
     container_name: worker
-    command: ./docker/celery_entrypoint.sh
+    command: >
+      sh -c "chmod +x ./docker/celery_entrypoint.sh &&
+             ./docker/celery_entrypoint.sh"
     environment:
       - DATABASE_URL=psql://user:password@db:5432/jlinux
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
@@ -61,7 +65,9 @@ services:
       dockerfile: docker/production.Dockerfile
     # command: celery -A jlinux.tasks beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     container_name: beats
-    command: ./docker/beats_entrypoint.sh
+    command: >
+      sh -c "chmod +x ./docker/beats_entrypoint.sh &&
+             ./docker/beats_entrypoint.sh"
     environment:
       - DATABASE_URL=psql://user:password@db:5432/jlinux
       - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
