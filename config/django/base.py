@@ -19,6 +19,7 @@ LOCAL_APPS = [
     'jlinux.blog.apps.BlogConfig',
     'jlinux.users.apps.UsersConfig',
     'jlinux.authentication.apps.AuthenticationConfig',
+    'jlinux.tasks.apps.TasksConfig',
 ]
 
 THIRD_PARTY_APPS = [
