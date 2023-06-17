@@ -1,8 +1,7 @@
 version: "3.9"
-
 services:
   db:
-    image: postgres:14.1
+    image: "${POSTGRES}"
     container_name: postgres
     ports:
       - 5432:5432
@@ -12,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=password
 
   rabbitmq:
-    image: "rabbitmq:alpine"
+    image: "${RABBITMQ}"
     container_name: rabbitmq
     healthcheck:
       test: rabbitmq-diagnostics -q ping
@@ -21,9 +20,10 @@ services:
       retries: 3
 
   django:
-    build:
-      context: .
-      dockerfile: docker/production.Dockerfile
+    image: "${BACKEND}"
+    # build:
+    #   context: .
+    #   dockerfile: docker/production.Dockerfile
     container_name: django
     command: >
       sh -c "chmod +x ./docker/web_entrypoint.sh &&
@@ -41,9 +41,10 @@ services:
     restart: on-failure
 
   celery:
-    build:
-      context: .
-      dockerfile: docker/production.Dockerfile
+    image: "${BACKEND}"
+    # build:
+    #   context: .
+    #   dockerfile: docker/production.Dockerfile
     # command: celery -A jlinux.tasks worker -l info --without-gossip --without-mingle --without-heartbeat
     container_name: worker
     command: >
@@ -61,9 +62,10 @@ services:
     restart: on-failure
 
   beats:
-    build:
-      context: .
-      dockerfile: docker/production.Dockerfile
+    image: "${BACKEND}"
+    # build:
+    #   context: .
+    #   dockerfile: docker/production.Dockerfile
     # command: celery -A jlinux.tasks beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     container_name: beats
     command: >
